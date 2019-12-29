@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg">
+<%= link_to "To-Do-List", lists_path, class: 'navbar-brand' %></nav>
+
+
+<%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+<%= link_to 'Back', root_path %> |
+<%= render "devise/shared/links" %>

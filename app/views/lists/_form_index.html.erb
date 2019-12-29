@@ -1,0 +1,23 @@
+<% if current_or_guest_user %>
+<%= form_for(@list) do |f| %>
+    <% if @list.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
+  
+        <ul>
+          <% @list.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="form-inline my-2 my-lg-0">
+        <%= f.text_field :description, placeholder: "todo", size: 10, class: "form-control mr-sm-2",  :required => 'required' %>
+        <%= f.text_field :tag_list, placeholder: "tags (separated by commas)", size: 23, class: "form-control mr-sm-2",  :required => 'required' %>
+        <font size=3px>&nbsp Before &nbsp</font>
+         <%= f.date_field :ddl, size: 10, class: "form-control mr-sm-2",:required => 'required' %>
+        <%= f.submit "Add", class: 'btn btn-outline-secondary my-2 my-sm-0',  :required => 'required' %>
+    </div>
+  <% end %>
+  <% end %>
