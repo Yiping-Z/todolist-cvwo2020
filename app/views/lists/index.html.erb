@@ -1,7 +1,7 @@
 <%= render 'lists/navbar' %>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
 <! –– display add item form ––> 
 <% if current_or_guest_user %>
   <p><%= render 'form_index' %></p>
@@ -110,7 +110,7 @@
   </tbody>
 </table>
 
-<a href="javascript:toggleDiv('myContent');" >View Overdues</a><p></p>
+<h4><a href="javascript:toggleDiv('myContent');" >Overdue Task</a></h4><p></p>
 <div id="myContent">
 <% if List.where(['ddl < ?', Date.yesterday]).count < 1 %>
   <p><h3>No overdues</h3></p>
