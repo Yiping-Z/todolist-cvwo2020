@@ -1,4 +1,7 @@
 <%= render 'lists/navbar' %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 <! –– display add item form ––> 
 <% if current_or_guest_user %>
   <p><%= render 'form_index' %></p>
@@ -16,9 +19,12 @@
     </span>
   <% end %>
 <% end %> 
-
-<p></p><h6><a href="javascript:toggleDiv('ongoing');" >Ongoing Tasks</a></h6><p></p>
-<div id = "ongoing">
+<p>
+  <h3><a data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse">
+    Ongoing Task
+  </a></h3>
+</p>
+<div class="collapse in" id="collapse">
 <table class = "table table-bordered"> 
 <tbody>
     <% @lists.each do |list| %>  
@@ -104,9 +110,10 @@
 </table>
 </div>
 
-<br>
-<h6><a href="javascript:toggleDiv('myContent');" >Overdue Tasks</a></h6><p></p>
-<div id="myContent">
+  <h3><a data-toggle="collapse" href="#overdue" role="button" aria-expanded="false" aria-controls="collapse">
+    Overdue Task
+  </a></h3>
+<div class="collapse" id="overdue">
 <% if List.where(['ddl < ?', Date.yesterday]).count < 1 %>
   <p><h3>No overdues</h3></p>
 <% end %>
