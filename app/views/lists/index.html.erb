@@ -20,11 +20,11 @@
   <% end %>
 <% end %> 
 <p>
-  <h3><button data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse">
+  <h3><a data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse">
     Ongoing Task
-  </button></h3>
+  </a></h3>
 </p>
-<div class="collapse in" id="collapse">
+<a class="collapse in" id="collapse">
 <table class = "table table-bordered"> 
 <tbody>
     <% @lists.each do |list| %>  
@@ -110,7 +110,7 @@
     <% end %>
   </tbody>
 </table>
-</div>
+</a>
 
   <h3><a data-toggle="collapse" href="#overdue" role="button" aria-expanded="false" aria-controls="collapse">
     Overdue Task
