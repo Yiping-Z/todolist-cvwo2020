@@ -119,5 +119,5 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 # doesn't have to be Heroku, but you get the idea.
-config.action_mailer.default_url_options = { :host => 'https://todolist-cvwo2020.herokuapp.com/' }
+config.action_mailer.default_url_options = { :host => 'https://todo-cvwo2020.herokuapp.com/' }
 end
