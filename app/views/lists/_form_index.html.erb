@@ -20,7 +20,7 @@
     <h3>
     <div class="form-inline">
         <%= f.text_field :description, placeholder: "todo", size: 40, class: "form-control mr-sm-2",  :required => 'required' %>
-        <div class="collapse" id="tag"><%= f.text_field :tag_list, placeholder: "tags (separated by commas)", size: 40, class: "form-control mr-sm-2" %></div>
+        <a class="collapse" id="tag"><%= f.text_field :tag_list, placeholder: "tags (separated by commas)", size: 40, class: "form-control mr-sm-2" %></a>
         <div class="collapse" id="ddl">
           <%= f.date_field :ddl, class: "form-control mr-sm-2" %>
         </div>
@@ -29,11 +29,3 @@
     </h3>
   <% end %>
   <% end %>
-
-  <! –– toggle the display ––> 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-<script type="text/javascript">
-function toggleDiv(divId) {
-   $("#"+divId).toggle();
-}
-</script>
