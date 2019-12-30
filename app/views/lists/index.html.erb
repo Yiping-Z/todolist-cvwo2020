@@ -110,7 +110,7 @@
   </tbody>
 </table>
 
-<a href="javascript:toggleDiv('myContent');" >View Overdue</a><p></p>
+<a href="javascript:toggleDiv('myContent');" >View Overdues</a><p></p>
 <div id="myContent">
 <% if List.where(['ddl < ?', Date.yesterday]).count < 1 %>
   <p><h3>No overdues</h3></p>
