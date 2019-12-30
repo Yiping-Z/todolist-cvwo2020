@@ -8,13 +8,12 @@
     <ul class="navbar-nav mr-auto">
     </ul>   
   </div>
- 
   <% if current_user %>
     <%= link_to "Edit Account", edit_user_registration_path(current_user)%> &nbsp&nbsp&nbsp&nbsp
     <%= link_to 'Sign out', destroy_user_session_path,
 method: :delete %> &nbsp&nbsp&nbsp&nbsp
   <% end %>
-  <% if guest_user %>
+  <% if guest_user && !current_user %>
     <%= link_to 'Sign up', new_user_registration_path %>&nbsp&nbsp&nbsp&nbsp
     <%= link_to 'Sign in', new_user_session_path %>
   <% end %>

@@ -16,13 +16,49 @@
     <a href="javascript:toggleDiv('myContent');" >View Overdue</a><p></p>
   <% end %>
 <% end %> 
-  <tbody>
+<tbody>
     <% @lists.each do |list| %>  
+      <% if !list.ddl %>
+        <% if list.completed %>
+      <tr class = "table-secondary">
+      <td class = "striker"><%= link_to list.description, edit_list_path(list) %></td>
+      <td class = "striker"></td>
+      <td class = "striker"><p><%= raw list.tag_list.map{ |t| link_to t, tag_path(t) }.join(', ') %></p></td>
+      <td>
+        <center>
+          <%= form_for(list) do |f| %>
+          <%= f.text_field :description, type: 'hidden'  %>
+          <% f.date_field :ddl, type: 'hidden'  %>
+          <%= f.check_box :completed, :checked => false, :style => 'visibility: hidden'%>
+          <%= f.submit "Uncross", class: 'btn btn-outline-secondary btn-sm' %>      
+          <% end %>
+        </center>
+      </td>
+      <td><%= link_to 'Delete', list, class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% else %>
+            <tr>
+            <td><%= link_to list.description, edit_list_path(list) %></td> 
+            <td></td>
+            <td><p><%= raw list.tag_list.map{ |t| link_to t, tag_path(t) }.join(', ') %></p></td>
+            <td>
+              <center>
+                <%= form_for(list) do |f| %>
+                <%= f.text_field :description, type: 'hidden'  %>
+                <%= f.date_field :ddl , type: 'hidden'  %>
+                <%= f.check_box :completed, :checked => true, :style => 'visibility: hidden'%>
+                <%= f.submit "Cross Off", class: 'btn btn-outline-secondary btn-sm' %>
+              </center>
+            </td>
+            <td><%= link_to 'Delete', list, class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+            <% end %>
+            <% end %>
+      <% else %>
       <% if list.completed && list.ddl >= Date.yesterday %>
       <% if current_or_guest_user && list.user == current_or_guest_user %>
       <tr class = "table-secondary">
         <td class = "striker"><%= link_to list.description, edit_list_path(list) %></td>
-        <td class = "striker"><%= link_to list.ddl.strftime("%-d/%-m/%y"), edit_list_path(list) %></td>
+        <td class = "striker"><%= link_to list.ddl, edit_list_path(list) %></td>
         <td class = "striker"><p><%= raw list.tag_list.map{ |t| link_to t, tag_path(t) }.join(', ') %></p></td>
         <td>
           <center>
@@ -42,7 +78,7 @@
       <%if current_or_guest_user && list.user == current_or_guest_user && list.ddl > Date.yesterday%>
       <tr>
         <td><%= link_to list.description, edit_list_path(list) %></td> 
-        <td><%= link_to list.ddl.strftime("%-d/%-m/%y"), edit_list_path(list) %></td>
+        <td><%= link_to list.ddl, edit_list_path(list) %></td>
         <td><p><%= raw list.tag_list.map{ |t| link_to t, tag_path(t) }.join(', ') %></p></td>
         <td>
           <center>
@@ -55,6 +91,7 @@
         </td>
         <td><%= link_to 'Delete', list, class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
       <% end %>
       <% end %>
       <% end %>
@@ -71,11 +108,12 @@
 <table class = "table table-bordered">
 <tbody>
     <% @lists.each do |list| %>  
+      <% if list.ddl %>
       <% if list.completed && list.ddl <= Date.yesterday%>
       <% if current_or_guest_user && list.user == current_or_guest_user %>
       <tr class = "table-secondary">
         <td class = "striker"><%= link_to list.description, edit_list_path(list) %></td>
-        <td class = "striker"><%= link_to list.ddl.strftime("%-d/%-m/%y"), edit_list_path(list) %></td>
+        <td class = "striker"><%= link_to list.ddl, edit_list_path(list) %></td>
         <td class = "striker"><p><%= raw list.tag_list.map{ |t| link_to t, tag_path(t) }.join(', ') %></p></td>
         <td>
           <center>
@@ -95,7 +133,7 @@
       <%if current_or_guest_user && list.user == current_or_guest_user && list.ddl <= Date.yesterday %>
       <tr>
         <td><%= link_to list.description, edit_list_path(list) %></td> 
-        <td><%= link_to list.ddl.strftime("%-d/%-m/%y"), edit_list_path(list) %></td>
+        <td><%= link_to list.ddl, edit_list_path(list) %></td>
         <td><p><%= raw list.tag_list.map{ |t| link_to t, tag_path(t) }.join(', ') %></p></td>
         <td>
           <center>
@@ -108,6 +146,7 @@
         </td>
         <td><%= link_to 'Delete', list, class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
       <% end %>
       <% end %>
       <% end %>
