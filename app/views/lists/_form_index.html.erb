@@ -3,7 +3,6 @@
     <% if @list.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
-  
         <ul>
           <% @list.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -14,8 +13,8 @@
     <span><a href="javascript:toggleDiv('tag');" >Add Tags </a>&nbsp&nbsp&nbsp&nbsp
           <a href="javascript:toggleDiv('ddl');" >Add Deadline </a>&nbsp&nbsp&nbsp&nbsp</span><p></p>
     <div class="form-inline">
-        <%= f.text_field :description, placeholder: "todo", size: 50, class: "form-control mr-sm-2",  :required => 'required' %>
-        <div id = "tag"><%= f.text_field :tag_list, placeholder: "tags (separated by commas)", size: 50, class: "form-control mr-sm-2" %></div>
+        <%= f.text_field :description, placeholder: "todo", size: 30, class: "form-control mr-sm-2",  :required => 'required' %>
+        <div id = "tag"><%= f.text_field :tag_list, placeholder: "tags (separated by commas)", size: 20, class: "form-control mr-sm-2" %></div>
         <div id = "ddl">
           <%= f.date_field :ddl, class: "form-control mr-sm-2" %>
         </div>

@@ -1,6 +1,5 @@
 <%= render 'lists/navbar' %>
 <! –– display add item form ––> 
-
 <% if current_or_guest_user %>
   <p><%= render 'form_index' %></p>
   <% if !params[:tag] %>
@@ -18,7 +17,7 @@
   <% end %>
 <% end %> 
 
-<h6><a href="javascript:toggleDiv('ongoing');" >Ongoing Tasks</a></h6><p></p>
+<p></p><h6><a href="javascript:toggleDiv('ongoing');" >Ongoing Tasks</a></h6><p></p>
 <div id = "ongoing">
 <table class = "table table-bordered"> 
 <tbody>
@@ -164,6 +163,6 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript">
 function toggleDiv(divId) {
-   $("#"+divId).toggle();
+   $("#"+divId)fadeToggle("slow");
 }
 </script>
