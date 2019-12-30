@@ -18,7 +18,7 @@
 <% end %> 
   <tbody>
     <% @lists.each do |list| %>  
-      <% if list.completed && list.ddl > Time.now %>
+      <% if list.completed && list.ddl >= Date.yesterday %>
       <% if current_or_guest_user && list.user == current_or_guest_user %>
       <tr class = "table-secondary">
         <td class = "striker"><%= link_to list.description, edit_list_path(list) %></td>
@@ -39,7 +39,7 @@
         </tr>
 
       <% else %>
-      <%if current_or_guest_user && list.user == current_or_guest_user && list.ddl > Time.now %>
+      <%if current_or_guest_user && list.user == current_or_guest_user && list.ddl > Date.yesterday%>
       <tr>
         <td><%= link_to list.description, edit_list_path(list) %></td> 
         <td><%= link_to list.ddl.strftime("%-d/%-m/%y"), edit_list_path(list) %></td>
@@ -65,13 +65,13 @@
 <br>
 <div id="myContent">
   <p style="color:red">Overdue</p>
-<% if List.order('ddl').where(['ddl < ?', Time.now]).count < 1 %>
+<% if List.order('ddl').where(['ddl < ?', Date.yesterday]).count < 1 %>
   <p>No overdues</p>
 <% end %>
 <table class = "table table-bordered">
 <tbody>
     <% @lists.each do |list| %>  
-      <% if list.completed && list.ddl < Time.now %>
+      <% if list.completed && list.ddl < Date.yesterday%>
       <% if current_or_guest_user && list.user == current_or_guest_user %>
       <tr class = "table-secondary">
         <td class = "striker"><%= link_to list.description, edit_list_path(list) %></td>
@@ -92,7 +92,7 @@
         </tr>
 
       <% else %>
-      <%if current_or_guest_user && list.user == current_or_guest_user && list.ddl < Time.now %>
+      <%if current_or_guest_user && list.user == current_or_guest_user && list.ddl < Date.yesterday %>
       <tr>
         <td><%= link_to list.description, edit_list_path(list) %></td> 
         <td><%= link_to list.ddl.strftime("%-d/%-m/%y"), edit_list_path(list) %></td>
@@ -114,7 +114,7 @@
     <% end %>
   </tbody>
 
-<! –– toggle the display of myContent ––> 
+<! –– toggle the display ––> 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript">
 function toggleDiv(divId) {
