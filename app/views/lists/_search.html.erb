@@ -1,4 +1,5 @@
-<%= search_form_for @q, url: lists_path, html: {method: :get} do |f| %>
+<h3><%= search_form_for @q, url: lists_path, html: {method: :get} do |f| %>
     <%= f.search_field :description_or_tags_name_cont %>
     <%= f.submit "Go" %>
-  <% end %>&nbsp&nbsp&nbsp&nbsp
+  <% end %>
+</h3>

@@ -1,6 +1,6 @@
 <%= render 'lists/navbar' %>
 <! –– display add item form ––> 
-<table class = "table table-bordered"> 
+
 <% if current_or_guest_user %>
   <p><%= render 'form_index' %></p>
   <% if !params[:tag] %>
@@ -12,12 +12,15 @@
   <%= sort_link(@q, :ddl) %>&nbsp&nbsp&nbsp&nbsp
   <% if params[:tag] %>
   <% else %>
-    <p></p><%= link_to 'Delete Marked Items', home_trash_em_path, data: { confirm: 'Are you sure?' } %> &nbsp&nbsp&nbsp&nbsp
+    <%= link_to 'Delete Marked Items', home_trash_em_path, data: { confirm: 'Are you sure?' } %> &nbsp&nbsp&nbsp&nbsp
     <%= link_to 'Delete All Items', home_trash_em_all_path, data: { confirm: 'Are you sure?' } %> &nbsp&nbsp&nbsp&nbsp
-    <a href="javascript:toggleDiv('myContent');" >View Overdue</a><p></p>
     </span>
   <% end %>
 <% end %> 
+
+<h6><a href="javascript:toggleDiv('ongoing');" >Ongoing Tasks</a></h6><p></p>
+<div id = "ongoing">
+<table class = "table table-bordered"> 
 <tbody>
     <% @lists.each do |list| %>  
       <% if !list.ddl %>
@@ -100,12 +103,13 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
+<h6><a href="javascript:toggleDiv('myContent');" >Overdue Tasks</a></h6><p></p>
 <div id="myContent">
-  <p style="color:red">Overdue</p>
-<% if List.order('ddl').where(['ddl <= ?', Date.yesterday]).count < 1 %>
-  <p>No overdues</p>
+<% if List.where(['ddl < ?', Date.yesterday]).count < 1 %>
+  <p><h3>No overdues</h3></p>
 <% end %>
 <table class = "table table-bordered">
 <tbody>
@@ -154,11 +158,4 @@
       <% end %>
     <% end %>
   </tbody>
-
-<! –– toggle the display ––> 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-<script type="text/javascript">
-function toggleDiv(divId) {
-   $("#"+divId).toggle();
-}
-</script>
+</div>
