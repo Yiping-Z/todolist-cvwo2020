@@ -11,10 +11,10 @@
         </ul>
       </div>
     <% end %>
-    <a href="javascript:toggleDiv('tag');" >Add Tags </a>&nbsp&nbsp&nbsp&nbsp
-    <a href="javascript:toggleDiv('ddl');" >Add Deadline </a>&nbsp&nbsp&nbsp&nbsp
+    <span><a href="javascript:toggleDiv('tag');" >Add Tags </a>&nbsp&nbsp&nbsp&nbsp
+          <a href="javascript:toggleDiv('ddl');" >Add Deadline </a>&nbsp&nbsp&nbsp&nbsp</span>
     <div class="form-inline">
-        <%= f.text_field :description, placeholder: "todo", size: 35, class: "form-control mr-sm-2",  :required => 'required' %>
+        <%= f.text_field :description, placeholder: "todo", size: 20, class: "form-control mr-sm-2",  :required => 'required' %>
         <div id = "tag"><%= f.text_field :tag_list, placeholder: "tags (separated by commas)", size: 23, class: "form-control mr-sm-2" %></div>
         <div id = "ddl">
           <%= f.date_field :ddl, size: 10, class: "form-control mr-sm-2" %>
