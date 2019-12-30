@@ -8,7 +8,6 @@
   <% if !params[:tag] %>
     <%= render 'search' %>
   <% end %>
-  <span>
   <%= link_to 'Back', lists_path %>&nbsp&nbsp&nbsp&nbsp 
   <%= sort_link(@q, :description) %>&nbsp&nbsp&nbsp&nbsp
   <%= sort_link(@q, :ddl) %>&nbsp&nbsp&nbsp&nbsp
@@ -16,13 +15,12 @@
   <% else %>
     <%= link_to 'Delete Marked Items', home_trash_em_path, data: { confirm: 'Are you sure?' } %> &nbsp&nbsp&nbsp&nbsp
     <%= link_to 'Delete All Items', home_trash_em_all_path, data: { confirm: 'Are you sure?' } %> &nbsp&nbsp&nbsp&nbsp
-    </span>
   <% end %>
 <% end %> 
 <p>
-  <h5>
+  <h6>
     Ongoing Task
-  </h5>
+  </h6>
 </p>
 <table class = "table table-bordered"> 
 <tbody>
@@ -110,7 +108,7 @@
   </tbody>
 </table>
 
-<h5><a href="javascript:toggleDiv('myContent');" >Overdue Task</a></h5><p></p>
+<h6><a href="javascript:toggleDiv('myContent');" >Overdue Task</a></h6><p></p>
 <div id="myContent">
 <table class = "table table-bordered">
 <tbody>
