@@ -20,10 +20,11 @@
   <% end %>
 <% end %> 
 <p>
-  <h3>
+  <h3><a data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse">
     Ongoing Task
-  </h3>
+  </a></h3>
 </p>
+<div class="collapse in" id="collapse">
 <table class = "table table-bordered"> 
 <tbody>
     <% @lists.each do |list| %>  
@@ -109,6 +110,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
   <h3><a data-toggle="collapse" href="#overdue" role="button" aria-expanded="false" aria-controls="collapse">
     Overdue Task
@@ -166,10 +168,4 @@
   </tbody>
 </div>
 
-<! –– toggle the display ––> 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript">
-function toggleDiv(divId) {
-   $("#"+divId)fadeToggle("slow");
-}
-</script>
+
