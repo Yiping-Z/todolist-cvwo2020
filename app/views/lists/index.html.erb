@@ -112,9 +112,6 @@
 
 <h4><a href="javascript:toggleDiv('myContent');" >Overdue Task</a></h4><p></p>
 <div id="myContent">
-<% if List.where(['ddl < ?', Date.yesterday]).count < 1 %>
-  <p><h3>No overdues</h3></p>
-<% end %>
 <table class = "table table-bordered">
 <tbody>
     <% @lists.each do |list| %>  
