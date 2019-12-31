@@ -3,10 +3,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <! –– display add item form ––> 
 <% if current_or_guest_user %>
-<% if !params[:tag] %>
-<%= render 'search' %>
-<% end %>
-  <p><%= render 'form_index' %></p>
+  <% if !params[:tag] %>
+    <%= render 'search' %>
+  <% end %>
+ 
   <%= link_to 'Back', lists_path %>&nbsp&nbsp&nbsp&nbsp 
   <%= link_to 'Add Advanced Task', new_list_path %>&nbsp&nbsp&nbsp&nbsp 
   <%= sort_link(@q, :description) %>&nbsp&nbsp&nbsp&nbsp
@@ -104,8 +104,8 @@
     <% end %>
   </tbody>
 </table>
+<h5><a href="javascript:toggleDiv('myContent');" >Overdue Task</a><p></p></h5>
 
-<h6><a href="javascript:toggleDiv('myContent');" >Overdue Task</a></h6><p></p>
 <div id="myContent">
 <table class = "table table-bordered">
 <tbody>
@@ -155,6 +155,7 @@
     <% end %>
   </tbody>
 </div>
+
 
 <! –– toggle the display of myContent ––> 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
