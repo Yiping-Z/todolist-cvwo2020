@@ -3,19 +3,17 @@
   <p>Hello, you are an Admin</p>
   <%= link_to 'Back', lists_path %>
   <table class = "table table-bordered">
-  <tr>
-    <th>Username</th>
+  <thead">
+  <tr class>
     <th>Email</th>
     <th>Admin</th>
-    <th>Last Update</th>
     <th>Delete</th>
   </tr>
+  </thread>
   <% for user in @users %>
   <tr>
-    <td><%= user.username %></td>
     <td><%= user.email %></td> 
     <td><%= user.admin %></td>
-    <td><%= user.updated_at %></td>
     <td><%= button_to "Delete", user, :confirm => "Are you sure?", :method => :delete,  class: 'btn btn-outline-danger btn-sm', method: :delete %></td>
   </tr>  
   <% end %>
@@ -23,3 +21,6 @@
 <% else %>
   <p>Hello, you are not an Admin</p>
 <% end %>
+
+<%# delete account that are inactive more more than 30 days %>
+<% User.where(['updated_at < ?', 30.days.ago]).destroy_all %>
