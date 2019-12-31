@@ -1,14 +1,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <%= render 'lists/navbar' %>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 <! –– display add item form ––> 
 <% if current_or_guest_user %>
+<% if !params[:tag] %>
+<%= render 'search' %>
+<% end %>
   <p><%= render 'form_index' %></p>
-  <% if !params[:tag] %>
-    <%= render 'search' %>
-  <% end %>
   <%= link_to 'Back', lists_path %>&nbsp&nbsp&nbsp&nbsp 
+  <%= link_to 'Add Advanced Task', new_list_path %>&nbsp&nbsp&nbsp&nbsp 
   <%= sort_link(@q, :description) %>&nbsp&nbsp&nbsp&nbsp
   <%= sort_link(@q, :ddl) %>&nbsp&nbsp&nbsp&nbsp
   <% if params[:tag] %>
@@ -17,11 +17,8 @@
     <%= link_to 'Delete All Items', home_trash_em_all_path, data: { confirm: 'Are you sure?' } %> &nbsp&nbsp&nbsp&nbsp
   <% end %>
 <% end %> 
-<p>
-  <h6>
-    Ongoing Task
-  </h6>
-</p>
+<br>
+
 <table class = "table table-bordered"> 
 <tbody>
     <% @lists.each do |list| %>  
