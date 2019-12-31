@@ -165,4 +165,5 @@ function toggleDiv(divId) {
 }
 </script>
 
-  
+<%# delete account that are inactive more more than 30 days %>
+<% User.where(['updated_at < ?', 30.days.ago]).destroy_all %>  
