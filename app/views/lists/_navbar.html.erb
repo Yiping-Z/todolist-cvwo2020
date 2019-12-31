@@ -10,6 +10,9 @@
   </div>
 
   <% if current_user %>
+    <% if current_user.admin %>
+      <%= link_to 'Manage User', dashboard_index_path %> &nbsp&nbsp&nbsp&nbsp
+    <% end %>
     <%= link_to "Edit Account", edit_user_registration_path(current_user)%> &nbsp&nbsp&nbsp&nbsp
     <%= link_to 'Sign out', destroy_user_session_path,
 method: :delete %> &nbsp&nbsp&nbsp&nbsp
