@@ -6,7 +6,7 @@
   <% if !params[:tag] %>
     <%= render 'search' %>
   <% end %>
- 
+  <p><%= render 'form_index' %></p> </div>
   <%= link_to 'Back', lists_path %>&nbsp&nbsp&nbsp&nbsp 
   <%= link_to 'Add Advanced Task', new_list_path %>&nbsp&nbsp&nbsp&nbsp 
   <%= sort_link(@q, :description) %>&nbsp&nbsp&nbsp&nbsp
