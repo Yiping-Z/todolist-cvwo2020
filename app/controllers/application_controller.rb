@@ -1,16 +1,5 @@
-class ApplicationController < ActionController::Base
-    before_action :configure_permitted_parameters, if: :devise_controller?
-    protect_from_forgery
-    include AuthorizationHelper
-    rescue_from CanCan::AccessDenied do |exception|
-      flash[:error] = exception.message
-      redirect_to root_url
-    end
+# frozen_string_literal: true
 
-    def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:admin])
-        devise_parameter_sanitizer.permit(:sign_in, keys: [:admin]) 
-        devise_parameter_sanitizer.permit(:account_update, keys: [:admin])  
-    end
-   
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :null_session
 end
