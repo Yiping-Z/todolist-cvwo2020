@@ -1,3 +1,4 @@
+//= require jquery2
 /* global document */
 
 import React from 'react';
