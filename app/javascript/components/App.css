@@ -1,38 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700,300,400italic");
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700");
 
-body,
-html,
-div,
-blockquote,
-img,
-label,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-pre,
-ul,
-ol,
-li,
-dl,
-dt,
-dd,
-form,
-a,
-fieldset,
-input,
-th,
-td {
+body, html, div, blockquote, img, label, p, h1, h2, h3, h4, h5, h6, pre, ul, ol, li, dl, dt, dd, form, a, fieldset, input, th, td {
   margin: 0;
   padding: 0;
 }
 
-ul,
-ol {
+ul, ol {
   list-style: none;
 }
 
@@ -47,7 +21,7 @@ header {
   height: 60px;
 }
 
-header h1 a{
+header h1, header h1 a{
   display: inline-block;
   font-family: "Maven Pro";
   font-size: 28px;
@@ -70,31 +44,30 @@ header h1 a:hover {
   height: calc(100vh - 145px);
 }
 
-.eventList {
+.listList {
   background: #f6f6f6;
   padding: 16px;
 }
 
-.eventList h2 {
+.listList h2 {
   font-size: 20px;
   padding: 8px 6px 10px;
 }
 
-.eventContainer {
+.listContainer {
   font-size: 15px;
   line-height: 35px;
 }
 
-.eventContainer h2 {
+.listContainer h2 {
   margin-bottom: 10px;
 }
 
-.eventList li:hover,
-a.active {
+.listList li:hover, a.active {
   background: #E6E6FA;
 }
 
-.eventList a {
+.listList a {
   display: block;
   color: black;
   text-decoration: none;
@@ -103,7 +76,7 @@ a.active {
   outline: 0;
 }
 
-.eventList h2 > a {
+.listList h2 > a {
   color: #236fff;
   font-size: 15px;
   float: right;
@@ -112,11 +85,7 @@ a.active {
   padding: 0px;
 }
 
-h2 a:hover {
-  text-decoration: underline;
-}
-
-.eventForm {
+.listForm {
   margin-top: 15px;
 }
 
@@ -129,8 +98,7 @@ label > strong {
   font-size: 15px;
 }
 
-input,
-textarea {
+input, textarea {
   padding: 2px 0 3px 3px;
   width: 400px;
   margin-bottom: 15px;
@@ -142,7 +110,7 @@ input[type="checkbox"] {
 }
 
 button[type="submit"] {
-  background: #6495ED;
+  background: #6495E1;
   border: none;
   padding: 5px 25px 8px;
   font-weight: 500;

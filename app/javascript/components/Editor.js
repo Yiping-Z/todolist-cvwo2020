@@ -1,126 +1,117 @@
-/* global window */
-
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import { Switch } from 'react-router-dom';
-import Event from './Event';
-import EventForm from './EventForm';
-import EventList from './EventList';
 import Header from './Header';
+import ListList from './ListList';
+import PropTypes from 'prop-types';
 import PropsRoute from './PropsRoute';
-import { success } from '../helpers/notifications';
+import List from './List';
+import { Switch } from 'react-router-dom';
+import ListForm from './ListForm';
 import { handleAjaxError } from '../helpers/helpers';
+import { success } from '../helpers/notifications';
 
 class Editor extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      events: null,
+        lists: null,
     };
-
-    this.addEvent = this.addEvent.bind(this);
-    this.deleteEvent = this.deleteEvent.bind(this);
-    this.updateEvent = this.updateEvent.bind(this);
+    this.addList = this.addList.bind(this);
+    this.deleteList = this.deleteList.bind(this);
+    this.updateList = this.updateList.bind(this);
   }
 
   componentDidMount() {
     axios
-      .get('/api/events.json')
-      .then(response => this.setState({ events: response.data }))
+      .get('/api/lists.json')
+      .then(response => this.setState({ lists: response.data }))
       .catch(handleAjaxError);
   }
 
-  addEvent(newEvent) {
+  
+  addList(newList) {
     axios
-      .post('/api/events.json', newEvent)
+      .post('/api/lists.json', newList)
       .then((response) => {
-        success('Event Added!');
-        const savedEvent = response.data;
+        success('List Added!');
+        const savedList = response.data;
         this.setState(prevState => ({
-          events: [...prevState.events, savedEvent],
+          lists: [...prevState.lists, savedList],
         }));
         const { history } = this.props;
-        history.push(`/events/${savedEvent.id}`);
+        history.push(`/lists/${savedList.id}`);
       })
       .catch(handleAjaxError);
-  }
+    }
 
-  deleteEvent(eventId) {
-    const sure = window.confirm('Are you sure?');
-    if (sure) {
+    deleteList(listId) {
+      const sure = window.confirm('Are you sure?');
+      if (sure) {
+        axios
+          .delete(`/api/lists/${listId}.json`)
+          .then((response) => {
+            if (response.status === 204) {
+              success('List deleted');
+              const { history } = this.props;
+              history.push('/lists');
+  
+              const { lists } = this.state;
+              this.setState({ lists: lists.filter(list => list.id !== listId) });
+            }
+          })
+          .catch(handleAjaxError);
+      }
+    }
+
+    updateList(updatedList) {
       axios
-        .delete(`/api/events/${eventId}.json`)
-        .then((response) => {
-          if (response.status === 204) {
-            success('Event deleted successfully');
-            const { history } = this.props;
-            history.push('/events');
-
-            const { events } = this.state;
-            this.setState({ events: events.filter(event => event.id !== eventId) });
-          }
+        .put(`/api/lists/${updatedList.id}.json`, updatedList)
+        .then(() => {
+          success('List updated');
+          const { lists } = this.state;
+          const idx = lists.findIndex(list => list.id === updatedList.id);
+          lists[idx] = updatedList;
+          const { history } = this.props;
+          history.push(`/lists/${updatedList.id}`);
+          this.setState({ lists });
         })
         .catch(handleAjaxError);
     }
-  }
-
-  updateEvent(updatedEvent) {
-    axios
-      .put(`/api/events/${updatedEvent.id}.json`, updatedEvent)
-      .then(() => {
-        success('Event updated');
-        const { events } = this.state;
-        const idx = events.findIndex(event => event.id === updatedEvent.id);
-        events[idx] = updatedEvent;
-        const { history } = this.props;
-        history.push(`/events/${updatedEvent.id}`);
-        this.setState({ events });
-      })
-      .catch(handleAjaxError);
-  }
-
   render() {
-    const { events } = this.state;
-    if (events === null) return null;
+    const { lists } = this.state;
+    if (lists === null) return null;
 
     const { match } = this.props;
-    const eventId = match.params.id;
-    const event = events.find(e => e.id === Number(eventId));
+    const listId = match.params.id;
+    const list = lists.find(e => e.id === Number(listId));
 
     return (
-      <div>
-        <Header />
-        <div className="grid">
-          <EventList events={events} activeId={Number(eventId)} />
-          <Switch>
-            <PropsRoute path="/events/new" component={EventForm} onSubmit={this.addEvent} />
-            <PropsRoute
-              exact
-              path="/events/:id/edit"
-              component={EventForm}
-              event={event}
-              onSubmit={this.updateEvent}
+        <div>
+          <Header />
+          <div className="grid">
+            <ListList lists={lists} activeId={Number(listId)} />
+            <Switch>
+              <PropsRoute path="/lists/new" component={ListForm} onSubmit={this.addList} />
+              <PropsRoute
+                exact
+                path="/lists/:id/edit"
+                component={ListForm}
+                list={list}
+                onSubmit={this.updateList}
             />
-            <PropsRoute
-              path="/events/:id"
-              component={Event}
-              event={event}
-              onDelete={this.deleteEvent}
-            />
+              <PropsRoute path="/lists/:id" component={List} list={list} onDelete={this.deleteList}/>
           </Switch>
+          </div>
         </div>
-      </div>
-    );
+      );
   }
 }
 
 Editor.propTypes = {
-  match: PropTypes.shape(),
-  history: PropTypes.shape({ push: PropTypes.func }).isRequired,
+    match: PropTypes.shape(),
+    history: PropTypes.shape({ push: PropTypes.func }).isRequired,
 };
-
+  
 Editor.defaultProps = {
   match: undefined,
 };

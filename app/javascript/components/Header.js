@@ -1,11 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Header = () => (
   <header>
-    <h1>
-      <Link to="/events">To-Do-List</Link>
-    </h1>
+    <h1>To-Do-List</h1>
   </header>
 );
 

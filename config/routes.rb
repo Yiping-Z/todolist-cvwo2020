@@ -1,14 +1,12 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
-  root to: redirect('/events')
+  root to: redirect('/lists')
 
-  get 'events', to: 'site#index'
-  get 'events/new', to: 'site#index'
-  get 'events/:id', to: 'site#index'
-  get 'events/:id/edit', to: 'site#index'
+  get 'lists', to: 'site#index'
+  get 'lists/new', to: 'site#index'
+  get 'lists/:id', to: 'site#index'
+  get 'lists/:id/edit', to: 'site#index'
 
   namespace :api do
-    resources :events, only: %i[index show create destroy update]
+    resources :lists, only: %i[index show create destroy update]
   end
 end
