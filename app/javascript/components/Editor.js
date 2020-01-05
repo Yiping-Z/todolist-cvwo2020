@@ -7,8 +7,6 @@ import PropsRoute from './PropsRoute';
 import List from './List';
 import { Switch } from 'react-router-dom';
 import ListForm from './ListForm';
-import { handleAjaxError } from '../helpers/helpers';
-import { success } from '../helpers/notifications';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -25,7 +23,9 @@ class Editor extends React.Component {
     axios
       .get('/api/lists.json')
       .then(response => this.setState({ lists: response.data }))
-      .catch(handleAjaxError);
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   
@@ -33,7 +33,7 @@ class Editor extends React.Component {
     axios
       .post('/api/lists.json', newList)
       .then((response) => {
-        success('List Added!');
+        alert('List Added!');
         const savedList = response.data;
         this.setState(prevState => ({
           lists: [...prevState.lists, savedList],
@@ -41,7 +41,9 @@ class Editor extends React.Component {
         const { history } = this.props;
         history.push(`/lists/${savedList.id}`);
       })
-      .catch(handleAjaxError);
+      .catch((error) => {
+        console.log(error);
+      });
     }
 
     deleteList(listId) {
@@ -51,7 +53,7 @@ class Editor extends React.Component {
           .delete(`/api/lists/${listId}.json`)
           .then((response) => {
             if (response.status === 204) {
-              success('List deleted');
+              alert('List deleted');
               const { history } = this.props;
               history.push('/lists');
   
@@ -59,7 +61,9 @@ class Editor extends React.Component {
               this.setState({ lists: lists.filter(list => list.id !== listId) });
             }
           })
-          .catch(handleAjaxError);
+          .catch((error) => {
+            console.log(error);
+          });
       }
     }
 
@@ -67,7 +71,7 @@ class Editor extends React.Component {
       axios
         .put(`/api/lists/${updatedList.id}.json`, updatedList)
         .then(() => {
-          success('List updated');
+          alert('List updated');
           const { lists } = this.state;
           const idx = lists.findIndex(list => list.id === updatedList.id);
           lists[idx] = updatedList;
@@ -75,7 +79,9 @@ class Editor extends React.Component {
           history.push(`/lists/${updatedList.id}`);
           this.setState({ lists });
         })
-        .catch(handleAjaxError);
+        .catch((error) => {
+          console.log(error);
+        });
     }
   render() {
     const { lists } = this.state;

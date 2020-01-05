@@ -1,7 +1,4 @@
-import { error } from './notifications';
 export const isEmptyObject = obj => Object.keys(obj).length === 0;
-const isValidDate = dateObj => !Number.isNaN(Date.parse(dateObj));
-
 export const validateList = (list) => {
   const errors = {};
   if (list.title === '') {
@@ -20,9 +17,6 @@ export const validateList = (list) => {
     errors.tags = 'You must enter at least one tag';
   }
 
-  if (!isValidDate(event.date)) {
-    errors.date = 'You must enter a valid date';
-  }
   return errors;
 }
 
@@ -32,9 +26,4 @@ export const formatDate = (d) => {
     const DD = `0${d.getDate()}`.slice(-2);
   
     return `${YYYY}-${MM}-${DD}`;
-};
-
-export const handleAjaxError = (err) => {
-    error('Something went wrong');
-    console.warn(err);
 };
