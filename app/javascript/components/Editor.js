@@ -89,7 +89,7 @@ class Editor extends React.Component {
 
     const { match } = this.props;
     const listId = match.params.id;
-    const list = lists.find(t => t.id === Number(listId));
+    const list = lists.find(e => e.id === Number(listId));
 
     return (
         <div>
