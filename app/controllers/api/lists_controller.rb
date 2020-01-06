@@ -36,7 +36,8 @@ class Api::ListsController < ApplicationController
         :date,
         :tags,
         :completed,
-        :user
+        :user,
+        :username
       )
     end
   end
