@@ -8,7 +8,9 @@ class Api::ListsController < ApplicationController
     end
   
     def show
-      respond_with current_user.lists.find(params[:id])
+      if current_user
+        respond_with current_user.lists.find(params[:id])
+      end
     end
   
     def create
@@ -24,7 +26,7 @@ class Api::ListsController < ApplicationController
     def update
       list = current_user.lists.find(params['id'])
       list.update(list_params)
-      respond_with List, json: list
+      respond_with current_user.lists, json: list
     end
   
     private
