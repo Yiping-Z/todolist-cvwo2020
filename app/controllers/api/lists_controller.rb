@@ -12,7 +12,6 @@ class Api::ListsController < ApplicationController
     def create
       @list = List.create(list_params)
       @list.user = current_user.username
-      @list.save
       respond_with :api, @list
     end
   
@@ -35,7 +34,8 @@ class Api::ListsController < ApplicationController
         :description,
         :date,
         :tags,
-        :completed
+        :completed,
+        :user
       )
     end
   end
