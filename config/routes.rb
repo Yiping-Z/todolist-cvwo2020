@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   get 'lists/new', to: 'site#index'
   get 'lists/:id', to: 'site#index'
   get 'lists/:id/edit', to: 'site#index'
-  get 'lists/login'
-  get 'lists/signup'
-  get 'lists/logout'
-  get 'lists/logged_in'
+  get 'lists/login', to: 'site#index'
+  get 'lists/signup', to: 'site#index'
+  get 'lists/logout', to: 'site#index'
+  get 'lists/logged_in', to: 'site#index'
   namespace :api do
     resources :lists, only: %i[index show create destroy update]
   end
