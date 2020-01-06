@@ -8,7 +8,7 @@ class Api::ListsController < ApplicationController
     end
   
     def show
-      respond_with current_user.lists.find(params[:id])
+      respond_with List.find(params[:id])
     end
   
     def create
