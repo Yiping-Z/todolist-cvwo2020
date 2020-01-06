@@ -19,7 +19,7 @@ componentDidMount() {
     this.loginStatus()
   }
 loginStatus = () => {
-    axios.get('http://localhost:3000/lists/logged_in', {withCredentials: true})
+    axios.get('https://todolist-react-cvwo.herokuapp.com/lists/logged_in', {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.handleLogin(response)
