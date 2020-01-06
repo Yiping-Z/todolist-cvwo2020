@@ -2,11 +2,7 @@ class Api::ListsController < ApplicationController
     respond_to :json
   
     def index
-      if current_user
         respond_with current_user.lists.order(date: :DESC)
-      else
-        render json: {}, status: 401
-      end
     end
   
     def show
@@ -14,11 +10,7 @@ class Api::ListsController < ApplicationController
     end
   
     def create
-      if current_user
         respond_with :api, current_user.lists.create(list_params)
-      else
-        render json: {}, status: 401
-      end
     end
   
     def destroy

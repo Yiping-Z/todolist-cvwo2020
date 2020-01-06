@@ -64,12 +64,6 @@ render() {
               <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
               )}
             />
-            <Route 
-              exact path='/lists' component={Editor}
-              render={props => (
-              <Home {...props} loggedInStatus={this.state.isLoggedIn}/>
-              )}
-            />
             <Route path="/lists/:id?" component={Editor} />
           </Switch>
         </BrowserRouter>
