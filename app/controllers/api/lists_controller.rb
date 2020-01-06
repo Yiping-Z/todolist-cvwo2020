@@ -2,7 +2,7 @@ class Api::ListsController < ApplicationController
     respond_to :json
   
     def index
-      respond_with List.order(date: :DESC)
+      respond_with List.order(date: :DESC).where(:user => current_user.username)
     end
   
     def show
@@ -10,7 +10,10 @@ class Api::ListsController < ApplicationController
     end
   
     def create
-      respond_with :api, List.create(list_params)
+      @list = List.create(list_params)
+      @list.user = current_user.username
+      @list.save
+      respond_with :api, @list
     end
   
     def destroy
