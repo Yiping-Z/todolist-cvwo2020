@@ -27,7 +27,7 @@ let user = {
       password: password
     }
     
-axios.post('http://todolist-react-cvwo.herokuapp.com/login', {user}, {withCredentials: true})
+axios.post('https://todolist-react-cvwo.herokuapp.com/login', {user}, {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)

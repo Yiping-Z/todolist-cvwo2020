@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do 
     allow do
-      origins 'http://todolist-react-cvwo.herokuapp.com'
+      origins 'https://todolist-react-cvwo.herokuapp.com'
     
       resource '*',
         headers: :any,
