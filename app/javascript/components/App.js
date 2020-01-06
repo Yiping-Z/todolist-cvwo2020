@@ -65,9 +65,9 @@ render() {
               )}
             />
             <Route 
-              exact path='/lists' 
+              exact path='/lists' component={Editor}
               render={props => (
-              <Signup {...props} loggedInStatus={this.state.isLoggedIn}/>
+              <Home {...props} loggedInStatus={this.state.isLoggedIn}/>
               )}
             />
             <Route path="/lists/:id?" component={Editor} />
