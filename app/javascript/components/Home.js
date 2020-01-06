@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 const Home = (props) => {
 const handleClick = () => {
-    axios.delete('https://todolist-react-cvwo.herokuapp.com/logout', {withCredentials: true})
+    axios.delete('https://todolist-react-cvwo.herokuapp.com/lists/logout', {withCredentials: true})
     .then(response => {
       props.handleLogout()
       props.history.push('/')
@@ -27,7 +27,7 @@ return (
       <br></br>
       { 
         props.loggedInStatus ? 
-        <Link to='/logout' onClick={handleClick}>Log Out</Link> : 
+        <Link to='/lists/logout' onClick={handleClick}>Log Out</Link> : 
         null
       }
     </div>

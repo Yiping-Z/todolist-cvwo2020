@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Header = (props) => {
   const handleClick = () => {
-    axios.delete('https://todolist-react-cvwo.herokuapp.com/logout', {withCredentials: true})
+    axios.delete('https://todolist-react-cvwo.herokuapp.com/lists/logout', {withCredentials: true})
     .then(response => {
       props.handleLogout()
       props.history.push('/')

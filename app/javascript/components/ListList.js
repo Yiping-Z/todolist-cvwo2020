@@ -19,7 +19,7 @@ class ListList extends React.Component {
 
   matchSearchTerm(obj) {
     const {
-      id, completed, created_at, updated_at, ...rest
+      user_id, id, completed, created_at, updated_at, ...rest
     } = obj;
     const { searchTerm } = this.state;
 
