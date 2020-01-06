@@ -12,6 +12,7 @@ class Api::ListsController < ApplicationController
     def create
       @list = List.create(list_params)
       @list.user = current_user
+      @list.save
       respond_with :api, @list
     end
   
