@@ -2,27 +2,27 @@ class Api::ListsController < ApplicationController
     respond_to :json
   
     def index
-      @user = current_user
-      respond_with List.order(date: :DESC).where(:user => @user.username)
+      if current_user
+        respond_with current_user.lists.order(date: :DESC)
+      end
     end
   
     def show
-      respond_with List.find(params[:id])
+      respond_with current_user.lists.find(params[:id])
     end
   
     def create
-      @list = List.create(list_params)
-      @list.user = @user.username
-      @list.save
-      respond_with :api, @list
+      if current_user
+        respond_with :api, current_user.lists.create(list_params)
+      end
     end
   
     def destroy
-      respond_with List.destroy(params[:id])
+      respond_with current_user.lists.destroy(params[:id])
     end
   
     def update
-      list = List.find(params['id'])
+      list = current_user.lists.find(params['id'])
       list.update(list_params)
       respond_with List, json: list
     end
