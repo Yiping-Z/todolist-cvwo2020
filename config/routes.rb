@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   get 'lists/:id', to: 'site#index'
   get 'lists/:id/edit', to: 'site#index'
   namespace :api do
-    resources :lists
+    resources :lists,  only: %i[index show create destroy update]
   end
 end

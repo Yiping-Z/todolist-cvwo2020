@@ -5,7 +5,7 @@ import Editor from './Editor';
 
 const App = () => (
   <div>
-    <Route path="/lists/:id?" exact component={Editor} />
+    <Route path="/lists/:id?" component={Editor} />
   </div>
 );
 

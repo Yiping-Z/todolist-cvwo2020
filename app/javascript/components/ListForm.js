@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatDate, isEmptyObject, validateList } from '../helpers/helpers';
-import Pikaday from 'pikaday';
-import 'pikaday/css/pikaday.css';
+import { isEmptyObject, validateList } from '../helpers/helpers';
 import { Link } from 'react-router-dom';
 import ListNotFound from './ListNotFound';
 
@@ -12,24 +10,13 @@ class ListForm extends React.Component {
 
     this.state = {
         list: props.list,
+        startDate: new Date(),
         errors: {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.dateInput = React.createRef();
-  }
-
-  componentDidMount() {
-    new Pikaday({
-      field: this.dateInput.current,
-      toString: date => formatDate(date),
-      onSelect: (date) => {
-        const formattedDate = formatDate(date);
-        this.dateInput.current.value = formattedDate;
-        this.updateList('date', formattedDate);
-      },
-    });
   }
 
   componentWillReceiveProps({ list }) {
@@ -48,6 +35,12 @@ class ListForm extends React.Component {
       onSubmit(list);
     }
   }
+  
+  handleChange = date => {
+    this.setState({
+      startDate: date
+    });
+  };
 
   handleInputChange(list) {
     const { target } = list;
@@ -107,10 +100,9 @@ class ListForm extends React.Component {
             <label htmlFor="date">
              <strong>Date:</strong>
              <input
-              type="text"
+              type="date"
               id="date"
               name="date"
-              ref={this.dateInput}
               autoComplete="off"
               value={list.date}
               onChange={this.handleInputChange} 

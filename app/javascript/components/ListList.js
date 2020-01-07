@@ -36,7 +36,7 @@ class ListList extends React.Component {
       .sort((a, b) => new Date(b.date) - new Date(a.date));
 
     return filteredLists.map(list => (
-      <li key={list.id}>
+      <li key={list.id} >
         <Link to={`/lists/${list.id}`} className={activeId === list.id ? 'active' : ''}>
           {list.date}
           {' - '}

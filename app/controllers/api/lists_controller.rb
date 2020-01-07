@@ -26,9 +26,9 @@ class Api::ListsController < ApplicationController
     end
   
     def update
-      list = current_user.lists.find(params['id'])
+      list =List.find(params['id'])
       list.update(list_params)
-      respond_with current_user.lists, json: list
+      respond_with List, json: list
     end
   
     private
