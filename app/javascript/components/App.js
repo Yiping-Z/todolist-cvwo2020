@@ -1,74 +1,12 @@
-import React, { Component } from 'react';
-import axios from 'axios'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import Home from './Home'
-import Login from './Login'
-import Signup from './Signup'
-import './App.css.scss';
+import './App.css';
+import React from 'react';
+import { Route } from 'react-router-dom';
 import Editor from './Editor';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      isLoggedIn: false,
-      user: {}
-     };
-  }
-componentDidMount() {
-    this.loginStatus()
-  }
-loginStatus = () => {
-    axios.get('https://todolist-react-cvwo.herokuapp.com/lists/logged_in', {withCredentials: true})
-    .then(response => {
-      if (response.data.logged_in) {
-        this.handleLogin(response)
-      } else {
-        this.handleLogout()
-      }
-    })
-    .catch(error => console.log('api errors:', error))
-  }
-handleLogin = (data) => {
-    this.setState({
-      isLoggedIn: true,
-      user: data.user
-    })
-  }
-handleLogout = () => {
-    this.setState({
-    isLoggedIn: false,
-    user: {}
-    })
-  }
-render() {
-    return (
-      <div>
-        <BrowserRouter>
-          <Switch>
-            <Route 
-              exact path='/'  
-              render={props => (
-              <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>
-              )}
-            />
-            <Route 
-              exact path='/lists/login' 
-              render={props => (
-              <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
-              )}
-            />
-            <Route 
-              exact path='/lists/signup' 
-              render={props => (
-              <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
-              )}
-            />
-            <Route path="/lists/:id?" component={Editor} />
-          </Switch>
-        </BrowserRouter>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <Route path="/lists/:id?" component={Editor} />
+  </div>
+);
+
 export default App;

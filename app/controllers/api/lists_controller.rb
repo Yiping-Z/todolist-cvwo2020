@@ -1,4 +1,5 @@
 class Api::ListsController < ApplicationController
+    skip_before_action :verify_authenticity_token
     respond_to :json
   
     def index
