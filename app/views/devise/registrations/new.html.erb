@@ -1,5 +1,9 @@
-<h2>Sign up</h2>
-
+<div class="jumbotron jumbotron-fluid text-center">
+  <div class="container py-5">
+    <h1 class="display-4">Sign Up</h1>
+          <p class="lead text-muted">
+              To-Do-List for better organisation and efficiency.
+          </p>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -27,3 +31,5 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>

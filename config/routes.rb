@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'lists/new', to: 'site#index'
   get 'lists/:id', to: 'site#index'
   get 'lists/:id/edit', to: 'site#index'
-
   namespace :api do
     resources :lists
   end

@@ -113,4 +113,15 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   Rails.application.routes.default_url_options = { host: "https://todolist-react-cvwo.herokuapp.com/" }
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => 'sendgrid.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 2525,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+# doesn't have to be Heroku, but you get the idea.
+config.action_mailer.default_url_options = { :host => 'https://todolist-react-cvwo.herokuapp.com/' }
 end

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700,300,400italic");
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700");
+@import "bootstrap";
 
 body, html, div, blockquote, img, label, p, h1, h2, h3, h4, h5, h6, pre, ul, ol, li, dl, dt, dd, form, a, fieldset, input, th, td {
   margin: 0;
@@ -16,8 +17,7 @@ body {
   line-height: 28px;
 }
 
-header {
-  background: #6495ED;
+header { 
   height: 60px;
 }
 
@@ -26,7 +26,7 @@ header h1, header h1 a{
   font-family: "Maven Pro";
   font-size: 28px;
   font-weight: 500;
-  color: white;
+ 
   padding: 14px 5%;
   text-decoration: none;
 }
@@ -186,4 +186,41 @@ input.search {
   width: 92%;
   margin: 15px 2px;
   padding: 4px 0 6px 6px;
+}
+
+.bg_primary-color {
+  background-color: #FFFFFF;
+}
+.primary-color {
+  background-color: #FFFFFF;
+}
+.bg_secondary-color {
+  background-color: #293241;
+}
+.secondary-color {
+  color: #293241;
+}
+.custom-button.btn {
+  background-color: #6495ED;
+  color: #FFF;
+  border: none;
+}
+.custom-button.btn:hover {
+  color: #FFF !important;
+  border: none;
+}
+.hero {
+  width: 100vw;
+  height: 50vh;
+}
+.hero img {
+  object-fit: cover;
+  object-position: top;
+  height: 100%;
+  width: 100%;
+}
+.overlay {
+  height: 100%;
+  width: 100%;
+  opacity: 0.4;
 }
