@@ -91,6 +91,7 @@ class ListForm extends React.Component {
     if (!list.id && path === '/lists/:id/edit') return <ListNotFound />;
     const cancelURL = list.id ? `/lists/${list.id}` : '/lists';
     const title = list.id ? `${list.date} - ${list.title}` : 'New List';
+
     return (
       <div>
         <h2>{title}</h2>
@@ -111,8 +112,8 @@ class ListForm extends React.Component {
               name="date"
               ref={this.dateInput}
               autoComplete="off"
-              onChange={this.handleInputChange}
               value={list.date}
+              onChange={this.handleInputChange} 
              />
             </label>
           </div>
@@ -149,14 +150,14 @@ ListForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     path: PropTypes.string.isRequired,
 };
-
+  
 ListForm.defaultProps = {
   list: {
       title: '',
       date: '',
       description: '',
       tags: '',
-      completed: false
+      completed: false,
     },
 };
 

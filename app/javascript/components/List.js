@@ -18,11 +18,6 @@ const List = ({ list, onDelete }) => {
       </button>
     </h2>
     <ul>
-    <li>
-        <strong>User:</strong>
-        {' '}
-        {list.user}
-      </li>
       <li>
         <strong>Date:</strong>
         {' '}

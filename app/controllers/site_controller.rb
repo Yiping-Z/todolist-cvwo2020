@@ -1,3 +1,5 @@
 class SiteController < ApplicationController
-    def index; end
-  end
+  before_action :authenticate_user!, only: [:index]
+  def index; end
+  def home; end
+end
