@@ -28,12 +28,10 @@ class Editor extends React.Component {
       });
   }
 
-  
   addList(newList) {
     axios
       .post('/api/lists.json', newList)
       .then((response) => {
-        alert('List Added!');
         const savedList = response.data;
         this.setState(prevState => ({
           lists: [...prevState.lists, savedList],
@@ -53,7 +51,6 @@ class Editor extends React.Component {
           .delete(`/api/lists/${listId}.json`)
           .then((response) => {
             if (response.status === 204) {
-              alert('List deleted');
               const { history } = this.props;
               history.push('/lists');
   
@@ -71,7 +68,6 @@ class Editor extends React.Component {
       axios
         .put(`/api/lists/${updatedList.id}.json`, updatedList)
         .then(() => {
-          alert('List updated');
           const { lists } = this.state;
           const idx = lists.findIndex(list => list.id === updatedList.id);
           lists[idx] = updatedList;
