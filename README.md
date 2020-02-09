@@ -1,5 +1,5 @@
 ## To-Do-List
-This is an assignmnet done for NUS Computing for Voluntary Welfare Organisations (CVWO) application in 2020.
+This is an assignment done for NUS Computing for Voluntary Welfare Organisations (CVWO) application in 2020.
 
 ### Features
 
@@ -12,11 +12,11 @@ This is an assignmnet done for NUS Computing for Voluntary Welfare Organisations
 
 ### Setup
 - Software used: Rails, Ruby, Node
-- CLI setup
+- CLI setup: <br/>
 `$ yarn install`
 `$ bundle install`
 `$ rails db: create`
-`$ rails db: migrate`
+`$ rails db: migrate`<br/>
 run: `$ rails: server`
 
 ### Heroku Deployment
