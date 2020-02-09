@@ -108,6 +108,7 @@ class ListForm extends React.Component {
               name="date"
               autoComplete="off"
               value={list.date}
+              placeholder="dd/mm/yyyy"
               onChange={this.handleInputChange} 
              />
             </label>
