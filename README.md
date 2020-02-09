@@ -1,11 +1,11 @@
-##To-Do-List
+## To-Do-List
 This is an assignmnet done for NUS Computing for Voluntary Welfare Organisations (CVWO) application in 2020.
 
 ### Features
 
-- User authentication;
+- User authentication
     - Register / Login / Forgot Password
-- Todo-lists;
+- Todo-lists
     - CRUD operation
     - Search by any txt
 
