@@ -22,6 +22,7 @@ class ListForm extends React.Component {
   componentWillReceiveProps({ list }) {
     this.setState({ list });
   }
+  // fields are cleared when a user is editing an list, then create a new list
 
   handleSubmit(e) {
     e.preventDefault();
@@ -42,6 +43,7 @@ class ListForm extends React.Component {
     });
   };
 
+  // update the list object
   handleInputChange(list) {
     const { target } = list;
     const { name } = target;
@@ -58,6 +60,7 @@ class ListForm extends React.Component {
     }));
   }
 
+  // handle input format errors
   renderErrors() {
     const { errors } = this.state;
   

@@ -19,6 +19,7 @@ class Editor extends React.Component {
     this.updateList = this.updateList.bind(this);
   }
 
+  // fetch the lists from api
   componentDidMount() {
     axios
       .get('/api/lists.json')
@@ -28,6 +29,7 @@ class Editor extends React.Component {
       });
   }
 
+  // receives a newList object and send a request to API to create a new list
   addList(newList) {
     axios
       .post('/api/lists.json', newList)
@@ -38,6 +40,7 @@ class Editor extends React.Component {
         }));
         const { history } = this.props;
         history.push(`/lists/${savedList.id}`);
+        // change the URL to that of the newly saved list
       })
       .catch((error) => {
         console.log(error);
@@ -79,6 +82,8 @@ class Editor extends React.Component {
           console.log(error);
         });
     }
+    // bind the list to the component instance and pass it as a prop to the EventForm component
+
   render() {
     const { lists } = this.state;
     if (lists === null) return null;
@@ -102,6 +107,7 @@ class Editor extends React.Component {
                 onSubmit={this.updateList}
             />
               <PropsRoute path="/lists/:id" component={List} list={list} onDelete={this.deleteList}/>
+                // when user select a list, pass the list to the list component and display it
           </Switch>
           </div>
         </div>

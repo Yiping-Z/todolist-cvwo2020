@@ -28,7 +28,6 @@ class ListList extends React.Component {
     );
   }
 
-  
   renderLists() {
     const { activeId, lists } = this.props;
     const filteredLists = lists
@@ -45,6 +44,7 @@ class ListList extends React.Component {
       </li>
     ));
   }
+  // filter lists matching the search criteria are displayed
 
   render() {
     return (
